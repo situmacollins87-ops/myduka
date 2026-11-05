@@ -20,6 +20,7 @@ products_data=get_products()
 print(products_data)
 
 
+
 cur=conn.cursor()
 cur.execute("select * from sales")
 sales_data=cur.fetchall()
@@ -37,3 +38,43 @@ def insert_sales():
 insert_sales()
 sales_data=get_sales()
 print(sales_data)
+
+def fetch_sales():
+    cur.execute("select * from sales")
+    sales_data=cur.fetchall()
+    return sales_data
+
+def insert_sales(sale_details):
+    cur.execute("insert into sales(pid,quantity)values(%s,%s)",sale_details)
+    conn.commit()
+
+sale1=(3,45)
+sale2=(4,2)
+insert_sales(sale1)
+insert_sales(sale2)
+
+sales_data=fetch_sales()
+print(sales_data)
+
+
+def fetch_products():
+    cur.execute("select * from products")
+    products_data=cur.fetchall()
+    return products_data
+
+def insert_products(products_details):
+    cur.execute("insert into products(name,buying_price,selling_price)values(%s,%s,%s)",products_details)
+    conn.commit()
+
+product1=('iphone 14',44000,53000)
+product2=('rice',200,600)
+insert_products(product1)
+insert_products(product2)
+
+products_data=get_products()
+print(products_data)
+
+
+
+
+
