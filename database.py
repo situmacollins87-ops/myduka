@@ -74,6 +74,20 @@ insert_products(product2)
 products_data=get_products()
 print(products_data)
 
+cur=conn.cursor()
+cur.execute("select * from stock")
+stock_data=cur.fetchall()
+print(stock_data)
+def get_stock():
+    cur.execute("select * from stock")
+    stock_data=cur.fetchall()
+    return stock_data
+stock_data=get_sales()
+print(stock_data)
+
+
+
+
 
 
 
