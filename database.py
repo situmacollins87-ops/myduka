@@ -74,6 +74,8 @@ insert_products(product2)
 products_data=get_products()
 print(products_data)
 
+#I experienced difficulties on a general function that can insert any stock. Am open for guidance.
+
 cur=conn.cursor()
 cur.execute("select * from stock")
 stock_data=cur.fetchall()
@@ -85,6 +87,52 @@ def get_stock():
 stock_data=get_sales()
 print(stock_data)
 
+
+def get_sales_per_day():
+    cur.execute("""
+        SELECT
+            DATE(sales.created_at) AS sale_day,
+            SUM(products.selling_price * sales.quantity) AS total_sales FROM sales JOIN products ON products.id = sales.pid GROUP BY sale_day ORDER BY sale_day;
+    """)
+
+    sales_per_day = cur.fetchall()
+    return sales_per_day
+
+sales_per_day = get_sales_per_day()
+print(sales_per_day)
+
+
+def get_profit_per_product():
+    cur.execute("""
+        SELECT
+            products.name AS p_name,
+            SUM((products.selling_price - products.buying_price) * sales.quantity) AS total_profit
+        FROM sales
+        JOIN products ON products.id = sales.pid
+        GROUP BY products.id, products.name
+        ORDER BY total_profit DESC;
+    """)
+
+    profit_per_product=cur.fetchall()
+    return profit_per_product
+
+profit_per_product=get_profit_per_product()
+print(profit_per_product)
+
+
+
+def get_profit_per_day():
+     cur.execute("""   
+     SELECT
+            DATE(sales.created_at) AS sale_day,SUM((products.selling_price - products.buying_price)* sales.quantity) AS total_profit FROM sales 
+            JOIN products ON products.id = sales.pid GROUP BY sale_day ORDER BY sale_day;
+""")
+
+     profit_per_day=cur.fetchall()
+     return profit_per_day
+
+profit_per_day=get_profit_per_day()
+print(profit_per_day)
 
 
 
