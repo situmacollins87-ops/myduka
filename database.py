@@ -10,34 +10,34 @@ def get_products():
     products_data=cur.fetchall()
     return products_data
 products_data=get_products()
-print(products_data)
+
 
 def insert_products():
     cur.execute("insert into products(name,buying_price,selling_price)values('assus laptop',40000,50000)")
     conn.commit()
 insert_products()
 products_data=get_products()
-print(products_data)
+
 
 
 
 cur=conn.cursor()
 cur.execute("select * from sales")
 sales_data=cur.fetchall()
-print(sales_data)
+
 def get_sales():
     cur.execute("select * from sales")
     sales_data=cur.fetchall()
     return sales_data
 sales_data=get_sales()
-print(sales_data)
+
 
 def insert_sales():
     cur.execute("insert into sales (pid, quantity, created_at) values (3, 45, NOW());")
     conn.commit()
 insert_sales()
 sales_data=get_sales()
-print(sales_data)
+
 
 def fetch_sales():
     cur.execute("select * from sales")
@@ -54,7 +54,7 @@ insert_sales(sale1)
 insert_sales(sale2)
 
 sales_data=fetch_sales()
-print(sales_data)
+
 
 
 def fetch_products():
@@ -72,20 +72,20 @@ insert_products(product1)
 insert_products(product2)
 
 products_data=get_products()
-print(products_data)
+
 
 #I experienced difficulties on a general function that can insert any stock. Am open for guidance.
 
 cur=conn.cursor()
 cur.execute("select * from stock")
 stock_data=cur.fetchall()
-print(stock_data)
+
 def get_stock():
     cur.execute("select * from stock")
     stock_data=cur.fetchall()
     return stock_data
 stock_data=get_sales()
-print(stock_data)
+
 
 
 def get_sales_per_day():
@@ -99,7 +99,7 @@ def get_sales_per_day():
     return sales_per_day
 
 sales_per_day = get_sales_per_day()
-print(sales_per_day)
+
 
 
 def get_profit_per_product():
@@ -117,7 +117,7 @@ def get_profit_per_product():
     return profit_per_product
 
 profit_per_product=get_profit_per_product()
-print(profit_per_product)
+
 
 
 
@@ -132,7 +132,7 @@ def get_profit_per_day():
      return profit_per_day
 
 profit_per_day=get_profit_per_day()
-print(profit_per_day)
+
 
 
 

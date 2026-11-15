@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,36 @@
 </head>
 <body>
     <div class="container">
-    <p>NAVBAR</p>
+
+        <p>NAVBAR</p>
+
+        <P>test</P>
+
+        {% block content %}
 
 
-    {% block content %}
+        {% endblock %}
 
-
-
-
-
-    {% endblock %}
-
-
-
-
-
-
-    <P style="margin-top: 200px;">FOOTER</P>
+        <p>test2 </p>
 
     </div>
-    
 </body>
+    
+
+       
+
+
+<body>
+
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="/privacy">privacy policy</a></li>
+            <li><a href="/terms">terms of service</a></li>
+            <li><a href="/contact">contact us</a></li>
+        </ul>
+        <p>&copy;2026 my work. All rights reserved.</p>
+    </footer>
+
+</body>
+
 </html>
