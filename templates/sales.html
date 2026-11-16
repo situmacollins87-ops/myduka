@@ -5,9 +5,33 @@
 
 
     <p>My sales page</p>
-    <p>different page</p>
-    <p>{{ x }} </p>
+    <div>
+        <table id="example" class="display">
+		<thead>
+			<tr>
+				<th> Id</th>
+				<th> pid</th>
+				<th> quantity</th>
+				<th> created at</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+            {% for sale in sales_data %}
+			<tr>
+				<td>{{ sales[0] }}</td>
+                <td>{{ sales[1] }}</td>
+                <td>{{ sales[2] }}</td>
+                <td>{{ sales[3] }}</td>
+				
+				
+			</tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
 
 
 </div>
 {% endblock %}
+
