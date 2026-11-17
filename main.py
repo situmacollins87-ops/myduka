@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from database import get_products
 
 #flask instance
@@ -16,6 +16,13 @@ def home(): #view func
 def products():
     products_data = get_products()
     return render_template('products.html',products_data = products_data)
+
+@app.route('/add_products',methods=['GET','POST'])
+def add_products():
+    if request.method=="POST":
+        product_name=request.form['p_name']
+        buying_price=request.form['b_price']
+        selling_price=request.form['s_price']
 
 
 
