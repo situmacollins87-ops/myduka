@@ -1,12 +1,12 @@
-from flask import Flask, render_template, request
-from database import get_products
+from flask import Flask, render_template, request, redirect, url_for
+from database import get_products, fetch_sales, insert_products, insert_sales
 
-#flask instance
+
 app = Flask(__name__)
 
 
-@app.route('/') #decorator func
-def home(): #view func
+@app.route('/') 
+def home(): 
     name = "Jane"
     return render_template('index.html',)
 
@@ -17,18 +17,37 @@ def products():
     products_data = get_products()
     return render_template('products.html',products_data = products_data)
 
+
 @app.route('/add_products',methods=['GET','POST'])
 def add_products():
-    if request.method=="POST":
-        product_name=request.form['p_name']
-        buying_price=request.form['b_price']
-        selling_price=request.form['s_price']
+    if request.method == "POST":
+        product_name = request.form['p_name']
+        buying_price = request.form['b_price']
+        selling_price = request.form['s_price'] 
 
+        new_product=(product_name,buying_price,selling_price)
+        insert_products(new_product)
+        print("products added successfuly")
+    return redirect(url_for('products'))
 
 
 @app.route('/sales')
 def sales():
-    return render_template('sales.html')
+    sales_data = fetch_sales()
+    return render_template('sales.html', sales_data=sales_data)
+
+@app.route('/add_sales', methods=['GET', 'POST'])
+def add_sales():
+    if request.method == "POST":
+        id = request.form['id']
+        pid = request.form['pid']
+        quantity = request.form['quantity']
+
+        new_sale = (id, pid, quantity)
+        insert_sales(new_sale)
+        print("Sales added successfully")
+    return redirect(url_for('sales'))
+
 
 
 
@@ -56,5 +75,5 @@ def login():
 
 
 
-# starts server to run app
+
 app.run(debug=True)

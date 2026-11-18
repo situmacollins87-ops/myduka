@@ -1,29 +1,86 @@
 {% extends 'base.html' %}
-{% block title %} sales page {% endblock %}
+{% block title %} Sales Page {% endblock %}
 {% block content %}
 <div>
-    <p>My sales page</p>
-    <div>
-        <table id="example" class="display">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>pid</th>
-                    <th>quantity</th>
-                    <th>created at</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for sales in sales_data %}
-                <tr>
-                    <td>{{ sales[0] }}</td>
-                    <td>{{ sales[1] }}</td>
-                    <td>{{ sales[2] }}</td>
-                    <td>{{ sales[3] }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+
+   <p>My sales page</p>
+
+
+   <div>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+         Add Product
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Adding a Product</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+
+                  <form method="post" action="/add_sales">
+                     <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">id</label>
+                        <input type="text" name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                     </div>
+                     <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">pid</label>
+                        <input type="text" name="pid" class="form-control" id="exampleInputPassword1">
+                     </div>
+
+                     <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">quantity</label>
+                        <input type="number" name="quantity" class="form-control" id="exampleInputPassword1">
+                     </div>
+
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add sales</button>
+                     </div>
+
+                  </form>
+
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+
+   <div>
+      <table id="example" class="display">
+         <thead>
+            <tr>
+               <th>id</th>
+               <th>pid</th>
+               <th>quantity</th>
+        
+
+            </tr>
+         </thead>
+         <tbody>
+            {% for product in products_data %}
+            <tr>
+               <td>{{ sales[0] }}</td>
+               <td>{{ sales[1] }}</td>
+               <td>{{ sales[2] }}</td>
+               
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+
+
+
+
+
+
 </div>
 {% endblock %}

@@ -1,9 +1,9 @@
 import psycopg2
 
-# establishing a db connection
+
 conn = psycopg2.connect(host='localhost',port=5433, user='postgres',password='Jimmax87',dbname='myduka_db')
 
-# creating a cur object to perform db operations
+
 cur = conn.cursor()
 
 
