@@ -39,11 +39,10 @@ def sales():
 @app.route('/add_sales', methods=['GET', 'POST'])
 def add_sales():
     if request.method == "POST":
-        id = request.form['id']
         pid = request.form['pid']
         quantity = request.form['quantity']
 
-        new_sale = (id, pid, quantity)
+        new_sale = ( pid, quantity)
         insert_sales(new_sale)
         print("Sales added successfully")
     return redirect(url_for('sales'))
