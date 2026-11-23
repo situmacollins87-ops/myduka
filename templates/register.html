@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
-{% block title %} register page {% endblock %}
+{% block title %}Register Page{% endblock %}
+
 {% block content %}
-<div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-3">My Register Page</h3>
+                    <p class="text-muted text-center mb-4">different page</p>
 
+                    {% if k %}
+                        <div class="alert alert-info text-center py-2" role="alert">
+                            {{ k }}
+                        </div>
+                    {% endif %}
 
-    <p>My register page</p>
-    <p>different page</p>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" name="name" placeholder="Enter your full name" required>
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="e.g. 0712 345 678" required>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
