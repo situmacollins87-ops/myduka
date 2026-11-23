@@ -9,6 +9,7 @@
      <link rel="stylesheet" href="https://cdn.datatables.net/3.1.5/css/dataTables.dataTables.min.css">
     <!-- datatables js cdn link -->
      <script src="https://cdn.datatables.net/3.1.5/js/dataTables.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <title> {% block title %} {% endblock %}</title>
 </head>
 
@@ -55,7 +56,18 @@
             </nav>
         </div>
 
-        <p>test</p>
+        <div>
+            {% with messages= get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible" role="alert">
+                {{messages}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
 
         {% block content %}
 
